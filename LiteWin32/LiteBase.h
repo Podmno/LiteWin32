@@ -5,6 +5,7 @@
 #include <tchar.h>
 #include <atlstr.h>
 
+
 /*
 
 	LiteBase.h

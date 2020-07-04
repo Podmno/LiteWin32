@@ -1,17 +1,7 @@
 #include "LiteWindow.h"
-#include "LiteText.h"
-
-/*
-
-	LiteWindow 提供的默认 main 函数模板：
-	上方为回调函数，下方为窗口创建/注册函数。
-
-	若要修订窗口的详细信息，请在 CreateWindow 函数前使用 LiteWindow 提供的函数
-	进行参数修改。
+#include "LiteEngine.h"
 
 
-
-*/
 
 
 LRESULT CALLBACK WindowProc(
@@ -25,18 +15,39 @@ LRESULT CALLBACK WindowProc(
 )
 {
 
-	LiteText tx;
+	LiteEngine tx;
+	
 
 	switch (uMsg) 
 	{
 
+	case WM_CREATE:
+		tx.add_button(hwnd,lParam,"分析",390,10,50,50,100); 
+		tx.add_button(hwnd, lParam, "文件", 320, 10, 50, 50, 200);
+		tx.add_button(hwnd, lParam, "记事本", 250, 10, 50, 50, 300);
+		return 0;
 	case WM_DESTROY:
 		::PostQuitMessage(0);
 		return 0;
 
-	case WM_PAINT:
-		tx.paint_engine(hwnd,"HELLO WORLD",0,0,11);
+	case WM_COMMAND:
+		switch (LOWORD(wParam)) {
+		case 100:
+			MessageBox(hwnd,TEXT("点击了分析按钮"),TEXT("Title1"),0);
+			break;
+		case 200:
+			MessageBox(hwnd, TEXT("点击了文件按钮"), TEXT("Title1"), 0);
+			break;
+		case 300:
+			system("notepad");
+			break;
+		}
 		
+
+	case WM_PAINT:
+		tx.paint_engine(hwnd,"EngHex 英语作文分析工具",10,20);
+		return 0;
+	
 
 
 	}
@@ -56,8 +67,8 @@ int WINAPI WinMain(
 {
 	LiteWindow wnd;
 	wnd.setSize(500, 500);
-	
-	wnd.CreateLiteWindow(hInstance,"LiteWindow Test",WindowProc);
+	wnd.setTitle("EngHex");
+	wnd.CreateLiteWindow(hInstance,"EngHex",WindowProc);
 	
 	wnd.showWindow();
 	wnd.runMessage();
