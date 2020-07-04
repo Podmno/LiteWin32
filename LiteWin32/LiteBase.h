@@ -5,6 +5,17 @@
 #include <tchar.h>
 #include <atlstr.h>
 
+/*
+
+	LiteBase.h
+	Provided common-used function in Win32 API Development.
+
+	Version 1.0.0 Copyright @ Studio TRI 2020
+
+
+
+*/
+
 
 class LiteBase
 {
