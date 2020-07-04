@@ -1,7 +1,6 @@
 #include "LiteWindow.h"
 #include "LiteEngine.h"
-
-
+#include "TextReader.h"
 
 
 LRESULT CALLBACK WindowProc(
@@ -16,6 +15,7 @@ LRESULT CALLBACK WindowProc(
 {
 
 	LiteEngine tx;
+
 	
 
 	switch (uMsg) 
@@ -32,23 +32,34 @@ LRESULT CALLBACK WindowProc(
 
 	case WM_COMMAND:
 		switch (LOWORD(wParam)) {
-		case 100:
-			MessageBox(hwnd,TEXT("点击了分析按钮"),TEXT("Title1"),0);
-			break;
 		case 200:
-			MessageBox(hwnd, TEXT("点击了文件按钮"), TEXT("Title1"), 0);
+		{
+			LPWSTR location = tx.open_file();
+			TextReader trdata(location);
+			trdata.start();
+
+			
+
+			
 			break;
+		}
+		case 100:
+		{
+			MessageBox(hwnd, TEXT("点击了文件按钮"), TEXT("Title1"), 0);
+			tx.paint_engine(hwnd, "EngHex 英语作文分析工具", 10, 20);
+			break;
+		}
 		case 300:
+		{
 			system("notepad");
 			break;
+		}
 		}
 		
 
 	case WM_PAINT:
 		tx.paint_engine(hwnd,"EngHex 英语作文分析工具",10,20);
-		return 0;
-	
-
+		
 
 	}
 	return ::DefWindowProc(hwnd, uMsg, wParam, lParam);

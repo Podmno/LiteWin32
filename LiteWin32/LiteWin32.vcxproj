@@ -145,6 +145,7 @@
     <ClCompile Include="LiteEngine.cpp" />
     <ClCompile Include="LiteWindow.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="TextReader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LiteBase.h" />
@@ -152,6 +153,7 @@
     <ClInclude Include="LiteString.h" />
     <ClInclude Include="LiteEngine.h" />
     <ClInclude Include="LiteWindow.h" />
+    <ClInclude Include="TextReader.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="README.md" />

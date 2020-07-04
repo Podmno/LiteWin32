@@ -22,6 +22,7 @@ public:
 	
 	void paint_engine(HWND,const char *,int,int);
 	void add_button(HWND,LPARAM,const char*,int,int,int,int,int);
+	LPWSTR open_file();
 
 
 	HDC hdc;
