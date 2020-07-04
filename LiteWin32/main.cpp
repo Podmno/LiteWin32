@@ -17,38 +17,54 @@ LRESULT CALLBACK WindowProc(
 	LiteEngine tx;
 
 	
+	char* data = NULL;
+	
 
 	switch (uMsg) 
 	{
 
 	case WM_CREATE:
+		
 		tx.add_button(hwnd,lParam,"分析",390,10,50,50,100); 
+		
 		tx.add_button(hwnd, lParam, "文件", 320, 10, 50, 50, 200);
+		
 		tx.add_button(hwnd, lParam, "记事本", 250, 10, 50, 50, 300);
+
 		return 0;
 	case WM_DESTROY:
+		
 		::PostQuitMessage(0);
+
 		return 0;
 
 	case WM_COMMAND:
+		
 		switch (LOWORD(wParam)) {
+		
 		case 200:
 		{
 			LPWSTR location = tx.open_file();
-			TextReader trdata(location);
-			trdata.start();
+			if (location) {
+				TextReader trdata(location);
+				trdata.start();
+				
 
+				
+			}
 			
-
 			
 			break;
 		}
+		
 		case 100:
 		{
 			MessageBox(hwnd, TEXT("点击了文件按钮"), TEXT("Title1"), 0);
-			tx.paint_engine(hwnd, "EngHex 英语作文分析工具", 10, 20);
+			data = (char*) "World!!";
+			SendMessage(hwnd, WM_PAINT, 0, 0);
 			break;
 		}
+		
 		case 300:
 		{
 			system("notepad");
@@ -58,12 +74,15 @@ LRESULT CALLBACK WindowProc(
 		
 
 	case WM_PAINT:
+		
 		tx.paint_engine(hwnd,"EngHex 英语作文分析工具",10,20);
+		
 		
 
 	}
-	return ::DefWindowProc(hwnd, uMsg, wParam, lParam);
 	
+	
+	return ::DefWindowProc(hwnd, uMsg, wParam, lParam);
 
 
 }
@@ -77,8 +96,11 @@ int WINAPI WinMain(
 )
 {
 	LiteWindow wnd;
+	
 	wnd.setSize(500, 500);
+
 	wnd.setTitle("EngHex");
+
 	wnd.CreateLiteWindow(hInstance,"EngHex",WindowProc);
 	
 	wnd.showWindow();

@@ -27,5 +27,7 @@ public:
 
 	LPCWSTR translate_char(const char* data);
 
+	void translate_int();
+
 };
 
