@@ -35,6 +35,7 @@ HWND LiteWindow::CreateLiteWindow(HINSTANCE hInstance,const char* winName,WNDPRO
 	wndclass.hIcon = hIcon;
 	wndclass.lpfnWndProc = winProc;
 	wndclass.lpszMenuName = 0;
+	wndclass.hbrBackground = (HBRUSH)GetStockObject(WHITE_BRUSH);
 	wndclass.style = CS_VREDRAW | CS_HREDRAW;
 	
 	if (!::RegisterClass(&wndclass)) {

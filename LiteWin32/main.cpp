@@ -36,9 +36,6 @@ LRESULT CALLBACK WindowProc(
 
 	case WM_PAINT:
 		tx.paint_engine(hwnd,"HELLO WORLD",0,0,11);
-		return 0;
-
-	
 		
 
 
