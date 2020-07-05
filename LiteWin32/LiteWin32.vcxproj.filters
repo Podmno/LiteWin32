@@ -24,13 +24,16 @@
     <ClCompile Include="LiteConfigManager.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="LiteText.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="LiteBase.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="LiteEngine.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="TextReader.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -44,11 +47,19 @@
     <ClInclude Include="LiteConfigManager.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="LiteText.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="LiteBase.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="LiteEngine.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="TextReader.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="README.md">
+      <Filter>源文件</Filter>
+    </None>
   </ItemGroup>
 </Project>

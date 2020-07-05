@@ -1,9 +1,11 @@
 #pragma once
+#include <fstream>
 #include <windows.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <tchar.h>
 #include <atlstr.h>
+
 
 /*
 
@@ -24,6 +26,8 @@ public:
 	virtual ~LiteBase();
 
 	LPCWSTR translate_char(const char* data);
+
+	void translate_int( int,char* & );
 
 };
 

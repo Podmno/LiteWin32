@@ -35,6 +35,7 @@ HWND LiteWindow::CreateLiteWindow(HINSTANCE hInstance,const char* winName,WNDPRO
 	wndclass.hIcon = hIcon;
 	wndclass.lpfnWndProc = winProc;
 	wndclass.lpszMenuName = 0;
+	wndclass.hbrBackground = (HBRUSH)GetStockObject(WHITE_BRUSH);
 	wndclass.style = CS_VREDRAW | CS_HREDRAW;
 	
 	if (!::RegisterClass(&wndclass)) {
@@ -44,7 +45,7 @@ HWND LiteWindow::CreateLiteWindow(HINSTANCE hInstance,const char* winName,WNDPRO
 	hwnd = ::CreateWindow(
 			LiteBase::translate_char(winName),
 			LiteBase::translate_char(title),
-			style,
+			WS_OVERLAPPEDWINDOW | WS_VSCROLL,
 			location_X,
 			location_Y,
 			width,
