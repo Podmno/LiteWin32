@@ -22,13 +22,14 @@ public:
 	~LiteEngine();
 	
 	void paint_engine(HWND,const char *,int,int);
+	void paint_engine(HWND, LPWSTR, int, int);
 
 	void add_button(HWND,LPARAM,const char*,int,int,int,int,int);
 
-	LPWSTR open_file();
+	void open_file(LPWSTR&);
 
 
-
+	LPWSTR location;
 
 	HDC hdc;
 	PAINTSTRUCT ps;

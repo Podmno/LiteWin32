@@ -26,6 +26,21 @@ void LiteEngine::paint_engine(HWND hwnd,const char* data, int x, int y)
 
 }
 
+void LiteEngine::paint_engine(HWND hwnd, LPWSTR data, int x, int y)
+{
+
+	int i = CString(data).GetLength();
+
+
+	hdc = GetDC(hwnd);
+
+	TextOut(hdc, x, y, data, i);
+
+	ReleaseDC(hwnd, hdc);
+
+
+}
+
 void LiteEngine::add_button(HWND hwnd, 
 	LPARAM lParam, 
 	const char* title,
@@ -52,14 +67,12 @@ void LiteEngine::add_button(HWND hwnd,
 
 }
 
-LPWSTR LiteEngine::open_file()
+void LiteEngine::open_file(LPWSTR& data)
 {
 
 
 	TCHAR szFileName[MAX_PATH] = {};
 	OPENFILENAMEW openFileName = {};
-
-
 	openFileName.lStructSize = sizeof(OPENFILENAMEW);
 	openFileName.nMaxFile = MAX_PATH;
 	openFileName.lpstrFilter = TEXT("文本文件（*.txt*）\0*.txt\0任何文件（*.*）\0*.*\0");
@@ -70,12 +83,14 @@ LPWSTR LiteEngine::open_file()
 
 	if (GetOpenFileName(&openFileName))
 	{
-		//MessageBox(nullptr, openFileName.lpstrFile, L"", MB_OK);
-		return openFileName.lpstrFile;
+		LPWSTR str = openFileName.lpstrFile;
+		MessageBox(nullptr, str, L"", MB_OK);
+		data = str;
+		location = str;
 		
 	}
 
-	return 0;
+	
 
 }
 

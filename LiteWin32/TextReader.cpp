@@ -10,6 +10,8 @@ TextReader::TextReader(){
     list_head->next = NULL;
     list_head->number = 0;
 
+    list_length = 0;
+
 
 }
 
@@ -117,6 +119,8 @@ void TextReader::read_all(){
 
     while(temp!=NULL){
 
+        wordindex++;
+
         next = temp->next;
         
         std::cout << "Word "<<wordindex+1<<": ";
@@ -204,6 +208,8 @@ void TextReader::print_all(){
 
     std::cout<<std::endl;
 
+    list_length = 0;
+
     while(cur!=NULL){
 
         std::cout << "Word ";
@@ -226,6 +232,16 @@ void TextReader::print_all(){
 
 
 
+
+}
+
+LPWSTR TextReader::getInfo(int index) {
+
+    char* temp = new char[200];
+
+   
+
+    return 0;
 
 }
 

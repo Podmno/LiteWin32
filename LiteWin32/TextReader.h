@@ -44,12 +44,14 @@ public:
 
     //void article_fix();
 
-
+    LPWSTR getInfo(int);
 
     void read_function();
     void print_function();
     void read_all();
     void print_all();
+
+    int list_length;
 
     LPWSTR location;
 
