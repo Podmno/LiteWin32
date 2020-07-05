@@ -12,28 +12,41 @@
 
 */
 
-struct lite_word {
+#include <stdio.h>
 
-	char letter;
-	lite_word* next;
+struct string_node {
+
+    char data;
+
+    string_node* next;
 
 
 };
 
-class LiteString
-{
+
+class LiteString {
 
 public:
-	LiteString();
-	LiteString(const char*);
-	LiteString(LiteString&);
-	
-	virtual ~LiteString();
+
+    LiteString();
+    LiteString(const char*);
+    LiteString(LiteString&);
+
+    bool equal(LiteString&);
+    void parseInt(int&);
+    void parseChar(char*&);
+
+    void add(LiteString&);
+
+    bool letterDecide(char);
+    bool letterDecide(char, int);
+
+    ~LiteString();
+
 private:
-	lite_word* head;
-	int length;
-public:
-	void parseInt(int&);
+
+    string_node* head;
+    unsigned int length;
+
 
 };
-
