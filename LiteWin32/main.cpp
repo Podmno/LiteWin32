@@ -2,6 +2,8 @@
 #include "LiteEngine.h"
 #include "TextReader.h"
 
+static LPWSTR out_listdata[2][300];
+static int page = 1;
 
 LRESULT CALLBACK WindowProc(
 
@@ -13,9 +15,9 @@ LRESULT CALLBACK WindowProc(
 )
 {
 	LiteBase bs;
-	LiteEngine tx;
+	LiteEngine* tx = new LiteEngine;
 	
-	LPWSTR out_listdata[2][1000];
+	
 	
 	char* data = NULL;
 	
@@ -24,22 +26,29 @@ LRESULT CALLBACK WindowProc(
 	{
 
 	case WM_CREATE:
+	{
 
-		tx.add_button(hwnd, lParam, "分析", 390, 10, 50, 50, 100);
+		tx->add_button(hwnd, lParam, "分析", 390, 10, 50, 50, 100);
+
+		tx->add_button(hwnd, lParam, "记事本", 320, 10, 50, 50, 300);
 
 
-		tx.add_button(hwnd, lParam, "记事本", 320, 10, 50, 50, 300);
+
 
 		return 0;
-
+	}
+	
 
 	case WM_DESTROY:
+	{
 
 		::PostQuitMessage(0);
 
 		return 0;
+	}
 
 	case WM_COMMAND:
+	{
 
 		switch (LOWORD(wParam)) {
 
@@ -59,13 +68,13 @@ LRESULT CALLBACK WindowProc(
 			if (GetOpenFileName(&openFileName))
 			{
 				LPWSTR str = openFileName.lpstrFile;
-				tx.paint_engine(hwnd, "选择了文件：", 10, 65);
-				tx.paint_engine(hwnd, str, 10, 80);
+				tx->paint_engine(hwnd, "选择了文件：", 10, 65);
+				tx->paint_engine(hwnd, str, 10, 80);
 
-				TextReader tr(str);
+				TextReader* tr = new TextReader(str);
 
-				tr.start();
-				wordslist* current = tr.list_head->next;
+				tr->start();
+				wordslist* current = tr->list_head->next;
 				char* temp = new char[200];
 				int i = 0;
 
@@ -84,6 +93,14 @@ LRESULT CALLBACK WindowProc(
 						USES_CONVERSION;
 						LPWSTR string = A2W(temp);
 						out_listdata[0][i] = string;
+
+						int value = current->number;
+						wchar_t* chardata = new wchar_t[10];
+						_itow_s(value, chardata, 10, 10);
+
+						out_listdata[1][i] = chardata;
+
+
 						i++;
 
 					}
@@ -104,16 +121,40 @@ LRESULT CALLBACK WindowProc(
 			system("notepad");
 			break;
 		}
+
+		
+
+		}
+	}
+
+
+		case WM_PAINT:
+		{
+
+			tx->paint_engine(hwnd, "EngHex 英语作文分析工具", 10, 25);
+			
+
+			for (int k = 0; k < 70; k++) {
+
+
+				tx->paint_engine(hwnd, out_listdata[0][4 * k], 5, 20 * (k + 5));
+				tx->paint_engine(hwnd, out_listdata[1][4 * k], 105, 20 * (k + 5));
+				tx->paint_engine(hwnd, out_listdata[0][4 * k+1], 150, 20 * (k + 5));
+				tx->paint_engine(hwnd, out_listdata[1][4 * k+1], 250, 20 * (k + 5));
+				tx->paint_engine(hwnd, out_listdata[0][4 * k+2], 295, 20 * (k + 5));
+				tx->paint_engine(hwnd, out_listdata[1][4 * k+2], 395, 20 * (k + 5));
+				tx->paint_engine(hwnd, out_listdata[0][4 * k+3], 440, 20 * (k + 5));
+				tx->paint_engine(hwnd, out_listdata[1][4 * k+3], 540, 20 * (k + 5));
+
+			}
+			break;
+		
+
 		}
 
 
-	case WM_PAINT:
-	{
-
-		tx.paint_engine(hwnd, "EngHex 英语作文分析工具", 10, 25);
 
 
-	}
 
 	
 	}

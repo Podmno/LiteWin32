@@ -45,7 +45,7 @@ HWND LiteWindow::CreateLiteWindow(HINSTANCE hInstance,const char* winName,WNDPRO
 	hwnd = ::CreateWindow(
 			LiteBase::translate_char(winName),
 			LiteBase::translate_char(title),
-			style,
+			WS_OVERLAPPEDWINDOW | WS_VSCROLL,
 			location_X,
 			location_Y,
 			width,
